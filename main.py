@@ -1,15 +1,13 @@
 import tkinter
 import requests
-import json
+import html
 
 response = requests.get("https://opentdb.com/api.php?amount=50&type=boolean")
 data = response.json()["results"]
 
 questions = []
 for item in data:
-    # questions.append("question")
-    questions.append(item["question"])
-    # questions.append("answer")
+    questions.append(html.unescape(item["question"]))
     questions.append(item["correct_answer"])
 # questions_dict = {}
 # for i in range(0, len(questions), 2):
